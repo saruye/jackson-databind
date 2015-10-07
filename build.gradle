@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'com.github.j2objccontrib.j2objcgradle' version '0.4.3-alpha'
+}
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // j2objcTranslation causes the entire specified library
+    // to be translated and built into a standalone Objective C library.
+    // j2objcTranslation must always be passed a *source* jar,
+    // therefore, note the ':sources' classifier.
+    j2objcTranslation 'com.fasterxml.jackson.core:jackson-annotations:2.5.0:sources'
+    j2objcTranslation 'com.fasterxml.jackson.core:jackson-core:2.5.1:sources'
+    testCompile files('./j2objc/lib/j2objc_junit.jar')
+    testCompile files('./j2objc/lib/hamcrest-core-1.3.jar')
+}
+
+j2objcConfig {
+    forceFilenameCollisionCheck false
+    translateArgs =['--segmented-headers', '--extract-unsequenced', '--build-closure']
+    finalConfigure()
+}

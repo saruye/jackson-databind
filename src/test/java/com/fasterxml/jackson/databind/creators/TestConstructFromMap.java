@@ -1,6 +1,5 @@
 package com.fasterxml.jackson.databind.creators;
 
-import java.awt.Point; // just for convenience
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -92,5 +91,50 @@ public class TestConstructFromMap
         FactoryFromDecimalString result = m.readValue("\"12.57\"", FactoryFromDecimalString.class);
         assertNotNull(result);
         assertEquals(12, result._value);
+    }
+
+    public static class Point  {
+        public int x;
+
+        public int y;
+
+        /*
+         * JDK 1.1 serialVersionUID
+         */
+        private static final long serialVersionUID = -5276940640259749850L;
+
+        /**
+         * Constructs and initializes a point at the origin
+         * (0,&nbsp;0) of the coordinate space.
+         *
+         * @since 1.1
+         */
+        public Point() {
+            this(0, 0);
+        }
+
+        /**
+         * Constructs and initializes a point with the same location as
+         * the specified <code>Point</code> object.
+         *
+         * @param p a point
+         * @since 1.1
+         */
+        public Point(Point p) {
+            this(p.x, p.y);
+        }
+
+        /**
+         * Constructs and initializes a point at the specified
+         * {@code (x,y)} location in the coordinate space.
+         *
+         * @param x the X coordinate of the newly constructed <code>Point</code>
+         * @param y the Y coordinate of the newly constructed <code>Point</code>
+         * @since 1.0
+         */
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

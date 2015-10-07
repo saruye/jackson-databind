@@ -15,7 +15,7 @@ public class TestDefaultForScalars
 {
     static class Jackson417Bean {
         public String foo = "bar";
-        public java.io.Serializable bar = new Integer(13);
+        public Integer bar = new Integer(13);
     }
 
     /*
